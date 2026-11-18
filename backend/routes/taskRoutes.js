@@ -130,7 +130,7 @@ router.get("/:id/tasks", authMiddleware, checkProjectAccess, async (req, res) =>
         }
 
         // Pagination
-        const limit = 20;
+        const limit = 10;
         const skip = (Number(page) - 1) * limit;
 
         const tasks = await Task.find(query)
