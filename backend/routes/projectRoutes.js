@@ -54,12 +54,15 @@ router.get("/", authMiddleware, async (req, res) => {
 
         const projects = await Project.find({
             "members.user": req.user.id
-        });
+        })
+        .populate("owner", "name email")
+        .populate("members.user", "name email");
 
         res.status(200).json({
             projects
         });
 
+
     } catch (error) {
         res.status(500).json({
             message: "Server error"
@@ -67,19 +70,28 @@ router.get("/", authMiddleware, async (req, res) => {
     }
 });
 
+// Get single project with members
 router.get("/:id", authMiddleware, checkProjectAccess, async (req, res) => {
+
     try {
+
+        const project = await Project.findById(req.params.id)
+            .populate("owner", "name email")
+            .populate("members.user", "name email");
+
         res.status(200).json({
-            project: req.project
+            project
         });
 
     } catch (error) {
+
         res.status(500).json({
             message: "Server error"
         });
-    }
-});
 
+    }
+
+});
 
 router.put("/:id", authMiddleware, checkProjectAccess, checkProjectOwner, async (req, res) => {
     try {
