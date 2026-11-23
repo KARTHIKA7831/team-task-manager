@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 // Import dashboard API
 import dashboardApi from "../api/dashboardApi";
 
+import './Dashboard.css';
+
 // Create Dashboard component
 function Dashboard() {
 
@@ -73,49 +75,91 @@ function Dashboard() {
     // Display dashboard information
     
 
+
 return (
     <div className="dashboard-container">
 
-        <h1>Project Dashboard</h1>
+        {/* Dashboard heading */}
+        <div className="dashboard-header">
+            <p className="dashboard-label">PROJECT OVERVIEW</p>
+            <h1>Project Dashboard</h1>
+            <p className="dashboard-subtitle">
+                Track your team's task progress
+            </p>
+        </div>
 
+        {/* Dashboard summary cards */}
         <div className="dashboard-cards">
 
-            <div className="dashboard-card">
-                <h3>To do</h3>
+            {/* To do card */}
+            <div className="dashboard-card todo-card">
+                <div className="dashboard-card-icon">📝</div>
+                <h3>To Do</h3>
                 <h2>{dashboard.todoCount}</h2>
+                <p>Tasks waiting to start</p>
             </div>
 
-            <div className="dashboard-card">
+            {/* In Progress card */}
+            <div className="dashboard-card progress-card">
+                <div className="dashboard-card-icon">⏳</div>
                 <h3>In Progress</h3>
                 <h2>{dashboard.inProgressCount}</h2>
+                <p>Tasks currently working on</p>
             </div>
 
-            <div className="dashboard-card">
-                <h3>Done</h3>
+            {/* Done card */}
+            <div className="dashboard-card done-card">
+                <div className="dashboard-card-icon">✅</div>
+                <h3>Completed</h3>
                 <h2>{dashboard.doneCount}</h2>
+                <p>Tasks successfully completed</p>
             </div>
 
-            <div className="dashboard-card">
+            {/* Overdue card */}
+            <div className="dashboard-card overdue-card">
+                <div className="dashboard-card-icon">⚠️</div>
                 <h3>Overdue</h3>
                 <h2>{dashboard.overdueCount}</h2>
+                <p>Tasks past their due date</p>
             </div>
-            
-<h2>Open Tasks Per Member</h2>
-
-<div>
-    {dashboard.openTasksPerMember.map((member) => (
-        <div key={member.userId}>
-
-            <h3>{member.name}</h3>
-
-            <p>Role: {member.role}</p>
-
-            <p>Open Tasks: {member.openTasks}</p>
 
         </div>
-    ))}
-</div>
 
+        {/* Member task details */}
+        <div className="member-section">
+
+            <div className="member-section-header">
+                <h2>Open Tasks Per Member</h2>
+                <p>Track pending work assigned to each team member</p>
+            </div>
+
+            <div className="member-list">
+
+                {dashboard.openTasksPerMember.map((member) => (
+
+                    <div className="member-card" key={member.userId}>
+
+                        <div className="member-info">
+                            <div className="member-avatar">
+                                {member.name?.charAt(0).toUpperCase()}
+                            </div>
+
+                            <div>
+                                <h3>{member.name}</h3>
+                                <p>{member.role}</p>
+                            </div>
+                        </div>
+
+                        <div className="member-task-count">
+                            <span>Open Tasks</span>
+                            <h2>{member.openTasks}</h2>
+                        </div>
+
+                    </div>
+
+                ))}
+
+            </div>
 
         </div>
 

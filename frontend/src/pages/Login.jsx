@@ -9,6 +9,8 @@ import { loginUser } from "../api/authApi";
 // useNavigate - Helps us move to another page
 import { useNavigate } from "react-router-dom";
 
+import './Login.css';
+
 // Create Login component
 function Login() {
 
@@ -61,43 +63,72 @@ localStorage.setItem("userId", response.data.user.id);
     };
 
     // Display login page
-    return (
-        <div>
+   
+return (
+    // Main background container
+    <div className="login-container">
 
-            {/* Display login heading */}
-            <h1>Login</h1>
+        {/* Login card */}
+        <div className="login-card">
 
-            {/* Create login form */}
+            {/* Login heading */}
+            <h1 className="login-title">
+                Welcome Back!
+            </h1>
+
+            {/* Subtitle */}
+            <p className="login-subtitle">
+                Login to your Team Task Manager account
+            </p>
+
+            {/* Login form */}
             <form onSubmit={handleLogin}>
 
-                {/* Email input field */}
-                <input
-                    type="email"
-                    placeholder="Enter Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
+                {/* Email field */}
+                <div className="form-group">
 
-                <br /><br />
+                    <label>Email Address</label>
 
-                {/* Password input field */}
-                <input
-                    type="password"
-                    placeholder="Enter Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
+                    <input
+                        type="email"
+                        placeholder="Enter Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
 
-                <br /><br />
+                </div>
+
+                {/* Password field */}
+                <div className="form-group">
+
+                    <label>Password</label>
+
+                    <input
+                        type="password"
+                        placeholder="Enter Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+
+                </div>
 
                 {/* Login button */}
-                <button type="submit">Login</button>
+                <button
+                    type="submit"
+                    className="login-button"
+                >
+                    Login
+                </button>
 
             </form>
+
         </div>
-    );
+
+    </div>
+);
+
 }
 
 // Export Login component

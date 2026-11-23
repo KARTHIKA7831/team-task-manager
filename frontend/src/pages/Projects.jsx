@@ -11,6 +11,8 @@ import Navbar from "../components/Navbar";
 // Import useNavigate
 import { useNavigate } from "react-router-dom";
 
+import './Projects.css';
+
 // Create Projects component
 function Projects() {
 
@@ -335,165 +337,294 @@ const handleLogout = () => {
 };
 
     // Display Projects page
-    return (
+    
 
-        <div>
+return (
+    <div className="projects-page">
 
-            {/* Display Navbar */}
-            <Navbar />
+        {/* Display Navbar */}
+        <Navbar />
 
-            {/* Display page heading */}
-            <h1>My Projects</h1>
+        {/* Main content */}
+        <div className="projects-content">
 
-            {/* Display Create Project heading */}
-            <h2>
-                {editingProjectId ? "Edit Project" : "Create Project"}
-            </h2>
+            {/* Page heading */}
+            <div className="projects-header">
 
-            {/* Create project form */}
-            <form onSubmit={handleCreate}>
+                <div>
+                    <p className="page-label">WORKSPACE</p>
 
-                {/* Enter project name */}
-                <input
-                    type="text"
-                    placeholder="Project Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    maxLength={60}
-                    required
-                />
+                    <h1>My Projects</h1>
 
-                <br /><br />
+                    <p className="page-description">
+                        Manage your projects and team members
+                    </p>
+                </div>
 
-                {/* Enter project description */}
-                <textarea
-                    placeholder="Project Description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                />
-
-                <br /><br />
-
-                {/* Submit project details */}
-                <button type="submit">
-
-                    {/* Change button text based on editing state */}
-                    {editingProjectId ? "Update Project" : "Create Project"}
-
+                {/* Logout button */}
+                <button
+                    className="logout-button"
+                    onClick={handleLogout}
+                >
+                    Logout
                 </button>
 
-                {/* Show Cancel button only while editing */}
-                {editingProjectId && (
+            </div>
 
-                    <button type="button" onClick={handleCancel}>
-                        Cancel
-                    </button>
+            {/* Create / Edit Project */}
+            <div className="project-form-card">
 
-                )}
+                <h2>
+                    {editingProjectId ? "Edit Project" : "Create Project"}
+                </h2>
 
-            </form>
+                <form onSubmit={handleCreate}>
 
-                       {/* Display loading message */}
-            {loading && <p>Loading...</p>}
+                    <div className="project-form-fields">
 
-            {/* Display error message */}
-            {error && <p>{error}</p>}
+                        {/* Project Name */}
+                        <div className="project-field">
 
-            {/* Display empty message */}
-            {!loading && !error && projects.length === 0 && (
-                <p>No projects found</p>
+                            <label>Project Name</label>
+
+                            <input
+                                type="text"
+                                placeholder="Enter project name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                maxLength={60}
+                                required
+                            />
+
+                        </div>
+
+                        {/* Project Description */}
+                        <div className="project-field">
+
+                            <label>Project Description</label>
+
+                            <textarea
+                                placeholder="Enter project description"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+
+                        </div>
+
+                    </div>
+
+                    {/* Form buttons */}
+                    <div className="project-form-actions">
+
+                        <button type="submit" className="primary-button">
+                            {editingProjectId ? "Update Project" : "Create Project"}
+                        </button>
+
+                        {editingProjectId && (
+                            <button
+                                type="button"
+                                className="secondary-button"
+                                onClick={handleCancel}
+                            >
+                                Cancel
+                            </button>
+                        )}
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            {/* Loading message */}
+            {loading && (
+                <p className="status-message">Loading projects...</p>
             )}
 
-            {/* Display all projects */}
-            {!loading && projects.map((project) => (
+            {/* Error message */}
+            {error && (
+                <p className="error-message">{error}</p>
+            )}
 
-                <div key={project._id}>
+            {/* Empty projects message */}
+            {!loading && !error && projects.length === 0 && (
+                <p className="empty-message">
+                    No projects found. Create your first project!
+                </p>
+            )}
 
-                    {/* Display project name */}
-                    <h3>{project.name}</h3>
+            {/* Projects list */}
+            {!loading && projects.length > 0 && (
 
-                    {/* Display project description */}
-                    <p>{project.description}</p>
+                <div className="projects-section">
 
-                    {/* Remove Member */}
-{project.members?.map((member) => {
+                    <h2>Your Projects</h2>
 
-    const user = member.user;
-    const userId = user?._id || user;
+                    <div className="projects-grid">
 
-    const ownerId = project.owner?._id || project.owner;
+                        {projects.map((project) => (
 
-    if (String(userId) === String(ownerId)) {
-        return null;
-    }
+                            <div className="project-card" key={project._id}>
 
-    return (
-        <div key={userId}>
-            <span>{user?.name || "Team Member"}</span>
+                                {/* Project details */}
+                                <div className="project-card-header">
 
-            <button
-                onClick={() => handleRemoveMember(project._id, userId)}
-            >
-                Remove
-            </button>
-        </div>
-    );
-})}
+                                    <h3>{project.name}</h3>
 
-                    {/* Edit project button */}
-                    <button onClick={() => handleUpdate(project)}>
-                        Edit
-                    </button>
+                                    <p>
+                                        {project.description || "No description available"}
+                                    </p>
 
-                    {/* Delete project button */}
-                    <button onClick={() => handleDelete(project._id)}>
-                        Delete
-                    </button>
+                                </div>
 
-                    {/* Open project tasks */}
-<button onClick={() => navigate(`/projects/${project._id}/tasks`)}>
-    View Tasks
-</button>
+                                {/* Team members */}
+                                <div className="members-section">
 
-{/* Open project dashboard */}
-<button onClick={() => navigate(`/projects/${project._id}/dashboard`)}>
-    View Dashboard
-</button>
+                                    <h4>Team Members</h4>
 
-{/* Add Member Form */}
-<form onSubmit={(e) => handleAddMember(e, project._id)}>
+                                    <div className="member-list">
 
-    {/* Enter member email */}
-    <input
-        type="email"
-        placeholder="Enter member email"
-        value={memberEmail}
-        onChange={(e) => setMemberEmail(e.target.value)}
-        required
-    />
+                                        {project.members?.map((member) => {
 
-    {/* Add Member Button */}
-    <button type="submit">
-        Add Member
-    </button>
+                                            const user = member.user;
+                                            const userId = user?._id || user;
 
-</form>
+                                            const ownerId =
+                                                project.owner?._id || project.owner;
 
-{/* Display member message */}
-{memberMessage && <p>{memberMessage}</p>}
+                                            if (String(userId) === String(ownerId)) {
+                                                return null;
+                                            }
+
+                                            return (
+                                                <div
+                                                    className="member-row"
+                                                    key={userId}
+                                                >
+
+                                                    <span>
+                                                        {user?.name || "Team Member"}
+                                                    </span>
+
+                                                    <button
+                                                        type="button"
+                                                        className="remove-button"
+                                                        onClick={() =>
+                                                            handleRemoveMember(
+                                                                project._id,
+                                                                userId
+                                                            )
+                                                        }
+                                                    >
+                                                        Remove
+                                                    </button>
+
+                                                </div>
+                                            );
+                                        })}
+
+                                    </div>
+
+                                </div>
+
+                                {/* Project action buttons */}
+                                <div className="project-actions">
+
+                                    <button
+                                        type="button"
+                                        className="edit-button"
+                                        onClick={() => handleUpdate(project)}
+                                    >
+                                        Edit
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        className="delete-button"
+                                        onClick={() => handleDelete(project._id)}
+                                    >
+                                        Delete
+                                    </button>
+
+                                </div>
+
+                                {/* Navigation buttons */}
+                                <div className="project-navigation">
+
+                                    <button
+                                        type="button"
+                                        className="view-tasks-button"
+                                        onClick={() =>
+                                            navigate(`/projects/${project._id}/tasks`)
+                                        }
+                                    >
+                                        View Tasks
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        className="view-dashboard-button"
+                                        onClick={() =>
+                                            navigate(`/projects/${project._id}/dashboard`)
+                                        }
+                                    >
+                                        View Dashboard
+                                    </button>
+
+                                </div>
+
+                                {/* Add member form */}
+                                <form
+                                    className="add-member-form"
+                                    onSubmit={(e) =>
+                                        handleAddMember(e, project._id)
+                                    }
+                                >
+
+                                    <h4>Add Team Member</h4>
+
+                                    <input
+                                        type="email"
+                                        placeholder="Enter member email"
+                                        value={memberEmail}
+                                        onChange={(e) =>
+                                            setMemberEmail(e.target.value)
+                                        }
+                                        required
+                                    />
+
+                                    <button
+                                        type="submit"
+                                        className="add-member-button"
+                                    >
+                                        Add Member
+                                    </button>
+
+                                </form>
+
+                                {/* Member message */}
+                                {memberMessage && (
+                                    <p className="member-message">
+                                        {memberMessage}
+                                    </p>
+                                )}
+
+                            </div>
+
+                        ))}
+
+                    </div>
 
                 </div>
-                
 
-            ))}
-
-            {/* Display Logout button at the bottom */}
-        <button onClick={handleLogout}>
-            Logout
-        </button>
+            )}
 
         </div>
-    );
+
+    </div>
+);
+
+
 }
 
 // Export Projects component

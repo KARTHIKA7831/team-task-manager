@@ -1,0 +1,414 @@
+
+/* Main page */
+.projects-page {
+    min-height: 100vh;
+    background-color: #f1f5f9;
+}
+
+/* Main content */
+.projects-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+/* Page heading section */
+.projects-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+/* Small heading */
+.page-label {
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+/* Main heading */
+.projects-header h1 {
+    color: #1e293b;
+    font-size: 30px;
+    margin: 0;
+}
+
+/* Description */
+.page-description {
+    color: #64748b;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+/* Logout button */
+.logout-button {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Logout hover */
+.logout-button:hover {
+    background-color: #dc2626;
+}
+
+/* Create project card */
+.project-form-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+    margin-bottom: 35px;
+}
+
+/* Form heading */
+.project-form-card h2 {
+    color: #1e293b;
+    font-size: 21px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Form fields container */
+.project-form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Individual field */
+.project-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Labels */
+.project-field label {
+    color: #334155;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Inputs and textarea */
+.project-field input,
+.project-field textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+}
+
+/* Textarea */
+.project-field textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+/* Input focus */
+.project-field input:focus,
+.project-field textarea:focus {
+    border-color: #2563eb;
+}
+
+/* Form buttons */
+.project-form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Common button styles */
+.primary-button,
+.secondary-button {
+    padding: 11px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Create and update button */
+.primary-button {
+    background-color: #2563eb;
+    color: white;
+}
+
+.primary-button:hover {
+    background-color: #1d4ed8;
+}
+
+/* Cancel button */
+.secondary-button {
+    background-color: #e2e8f0;
+    color: #334155;
+}
+
+.secondary-button:hover {
+    background-color: #cbd5e1;
+}
+
+/* Projects section */
+.projects-section h2 {
+    color: #1e293b;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+/* Projects grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+/* Individual project card */
+.project-card {
+    background-color: white;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+    min-width: 0;
+}
+
+/* Project heading */
+.project-card-header h3 {
+    color: #1e293b;
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* Project description */
+.project-card-header p {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Members section */
+.members-section {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 15px;
+    margin-bottom: 18px;
+}
+
+.members-section h4,
+.add-member-form h4 {
+    color: #334155;
+    font-size: 14px;
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+/* Member list */
+.member-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Individual member */
+.member-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8fafc;
+    padding: 10px;
+    border-radius: 6px;
+    color: #334155;
+    font-size: 13px;
+}
+
+/* Remove member button */
+.remove-button {
+    background-color: #fee2e2;
+    color: #dc2626;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.remove-button:hover {
+    background-color: #fecaca;
+}
+
+/* Edit and delete section */
+.project-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+/* Edit button */
+.edit-button {
+    flex: 1;
+    background-color: #dbeafe;
+    color: #1d4ed8;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.edit-button:hover {
+    background-color: #bfdbfe;
+}
+
+/* Delete button */
+.delete-button {
+    flex: 1;
+    background-color: #fee2e2;
+    color: #dc2626;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #fecaca;
+}
+
+/* View tasks and dashboard */
+.project-navigation {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.view-tasks-button,
+.view-dashboard-button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+}
+
+.view-tasks-button {
+    background-color: #2563eb;
+}
+
+.view-tasks-button:hover {
+    background-color: #1d4ed8;
+}
+
+.view-dashboard-button {
+    background-color: #7c3aed;
+}
+
+.view-dashboard-button:hover {
+    background-color: #6d28d9;
+}
+
+/* Add member form */
+.add-member-form {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Add member input */
+.add-member-form input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 13px;
+    outline: none;
+}
+
+/* Add member input focus */
+.add-member-form input:focus {
+    border-color: #2563eb;
+}
+
+/* Add member button */
+.add-member-button {
+    background-color: #16a34a;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.add-member-button:hover {
+    background-color: #15803d;
+}
+
+/* Member message */
+.member-message {
+    color: #2563eb;
+    font-size: 13px;
+    margin-top: 12px;
+}
+
+/* Error message */
+.error-message {
+    color: #dc2626;
+    background-color: #fee2e2;
+    padding: 12px;
+    border-radius: 6px;
+}
+
+/* Loading and empty message */
+.status-message,
+.empty-message {
+    color: #64748b;
+    text-align: center;
+    padding: 25px;
+}
+
+/* Tablet responsive */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projects-content {
+        padding: 20px;
+    }
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+    .projects-content {
+        padding: 15px;
+    }
+
+    .projects-header {
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .projects-header h1 {
+        font-size: 24px;
+    }
+
+    .project-form-card,
+    .project-card {
+        padding: 18px;
+    }
+
+    .project-navigation {
+        flex-direction: column;
+    }
+}
