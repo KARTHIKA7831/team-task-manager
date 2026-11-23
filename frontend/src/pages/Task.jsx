@@ -14,6 +14,8 @@ import projectApi from "../api/projectApi";
 // Import comment API
 import Comments from "../components/Comments";
 
+import './Task.css';
+
 // Create Task component
 function Task() {
 
@@ -377,320 +379,394 @@ members.forEach((member) => {
 });
 
     // Display Task page
-    return (
+    
+return (
+    <div className="task-page">
 
-        <div>
+        {/* Main content */}
+        <div className="task-content">
 
             {/* Page heading */}
-            <h1>Team Tasks</h1>
+            <div className="task-header">
+                <div>
+                    <p className="task-label">PROJECT WORKSPACE</p>
+                    <h1>Team Tasks</h1>
+                    <p className="task-project-name">
+                        {project?.name}
+                    </p>
+                </div>
+            </div>
 
-            {/* Project name */}
-            <h2>{project?.name}</h2>
+            {/* Create / Edit Task */}
+            <div className="task-form-card">
 
-            {/* Create or Edit Task */}
-            <h2>{editingTaskId ? "Edit Task" : "Create Task"}</h2>
+                <h2>
+                    {editingTaskId ? "Edit Task" : "Create New Task"}
+                </h2>
 
-            {/* Display success message */}
-{successMessage && <p>{successMessage}</p>}
-
-            <form onSubmit={handleSubmit}>
-
-                {/* Task title */}
-                <input
-                    type="text"
-                    placeholder="Task Title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    maxLength={120}
-                     />
-
-                     {/* Error message */}
-{error && <p>{error}</p>}
-
-                <br /><br />
-
-                {/* Task description */}
-                <textarea
-                    placeholder="Task Description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                />
-
-                <br /><br />
-
-                {/* Select assignee */}
-                <select
-                    value={assignee}
-                    onChange={(e) => setAssignee(e.target.value)}
-                >
-
-                    <option value="">Nobody</option>
-
-                    {uniqueMembers.map((member) => {
-
-    const user = member.user;
-    const userId = user?._id || user;
-
-    return (
-        <option key={userId} value={userId}>
-            {user?.name || "Team member"}
-        </option>
-    );
-
-})}
-
-                </select>
-
-                <br /><br />
-
-                {/* Due date */}
-                <input
-                    type="date"
-                    value={dueDate}
-                    onChange={(e) => setDueDate(e.target.value)}
-                />
-
-                <br /><br />
-
-                {/* Priority */}
-                <select
-                    value={priority}
-                    onChange={(e) => setPriority(e.target.value)}
-                >
-                    <option value="Low">Low</option>
-                    <option value="Medium">Medium</option>
-                    <option value="High">High</option>
-                </select>
-
-                <br /><br />
-
-                {/* Status */}
-                <select
-                    value={status}
-                    onChange={(e) => setStatus(e.target.value)}
-                >
-                    <option value="To do">To do</option>
-                    <option value="In progress">In progress</option>
-                    <option value="Done">Done</option>
-                </select>
-
-                <br /><br />
-
-                {/* Submit button */}
-                <button type="submit">
-                    {editingTaskId ? "Update Task" : "Create Task"}
-                </button>
-
-                {/* Cancel editing */}
-                {editingTaskId && (
-                    <button type="button" onClick={() => {
-                        setTitle("");
-                        setDescription("");
-                        setAssignee("");
-                        setDueDate("");
-                        setPriority("Medium");
-                        setStatus("To do");
-                        setEditingTaskId(null);
-                    }}>
-                        Cancel
-                    </button>
+                {/* Success message */}
+                {successMessage && (
+                    <p className="success-message">{successMessage}</p>
                 )}
 
-            </form>
+                {/* Error message */}
+                {error && (
+                    <p className="task-error-message">{error}</p>
+                )}
 
-            <hr />
+                <form onSubmit={handleSubmit}>
 
-            {/* Search tasks */}
-            <h2>Find Tasks</h2>
+                    <div className="task-form-grid">
 
-            <input
-                type="text"
-                placeholder="Search task"
-                value={search}
-                onChange={(e) => {
-                    setSearch(e.target.value);
-                    setPage(1);
-                }}
-            />
+                        {/* Task title */}
+                        <div className="task-field full-width">
+                            <label>Task Title</label>
+                            <input
+                                type="text"
+                                placeholder="Enter task title"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                                maxLength={120}
+                            />
+                        </div>
 
-            <br /><br />
+                        {/* Description */}
+                        <div className="task-field full-width">
+                            <label>Task Description</label>
+                            <textarea
+                                placeholder="Describe your task..."
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </div>
 
-            {/* Filter by status */}
-            <select
-                value={statusFilter}
-                onChange={(e) => {
-                    setStatusFilter(e.target.value);
-                    setPage(1);
-                }}
-            >
-                <option value="">All Status</option>
-                <option value="To do">To do</option>
-                <option value="In progress">In progress</option>
-                <option value="Done">Done</option>
-            </select>
+                        {/* Assignee */}
+                        <div className="task-field">
+                            <label>Assign To</label>
+                            <select
+                                value={assignee}
+                                onChange={(e) => setAssignee(e.target.value)}
+                            >
+                                <option value="">Nobody</option>
 
-            <br /><br />
+                                {uniqueMembers.map((member) => {
+                                    const user = member.user;
+                                    const userId = user?._id || user;
 
-            {/* Filter by priority */}
-            <select
-                value={priorityFilter}
-                onChange={(e) => {
-                    setPriorityFilter(e.target.value);
-                    setPage(1);
-                }}
-            >
-                <option value="">All Priority</option>
-                <option value="Low">Low</option>
-                <option value="Medium">Medium</option>
-                <option value="High">High</option>
-            </select>
+                                    return (
+                                        <option key={userId} value={userId}>
+                                            {user?.name || "Team member"}
+                                        </option>
+                                    );
+                                })}
+                            </select>
+                        </div>
 
-            <br /><br />
+                        {/* Due date */}
+                        <div className="task-field">
+                            <label>Due Date</label>
+                            <input
+                                type="date"
+                                value={dueDate}
+                                onChange={(e) => setDueDate(e.target.value)}
+                            />
+                        </div>
 
-            {/* Filter by assignee */}
-            <select
-                value={assigneeFilter}
-                onChange={(e) => {
-                    setAssigneeFilter(e.target.value);
-                    setPage(1);
-                }}
-            >
-                <option value="">All Members</option>
+                        {/* Priority */}
+                        <div className="task-field">
+                            <label>Priority</label>
+                            <select
+                                value={priority}
+                                onChange={(e) => setPriority(e.target.value)}
+                            >
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
 
-                {uniqueMembers.map((member) => {
+                        {/* Status */}
+                        <div className="task-field">
+                            <label>Status</label>
+                            <select
+                                value={status}
+                                onChange={(e) => setStatus(e.target.value)}
+                            >
+                                <option value="To do">To do</option>
+                                <option value="In progress">In progress</option>
+                                <option value="Done">Done</option>
+                            </select>
+                        </div>
 
-                    const user = member.user;
-                    const userId = user?._id || user;
+                    </div>
 
-                    if (!userId) return null;
+                    {/* Form buttons */}
+                    <div className="task-form-actions">
 
-                    return (
-                        <option key={userId} value={userId}>
-                            {user?.name || "Team member"}
-                        </option>
-                    );
-                })}
+                        <button type="submit" className="task-primary-button">
+                            {editingTaskId ? "Update Task" : "Create Task"}
+                        </button>
 
-            </select>
+                        {editingTaskId && (
+                            <button
+                                type="button"
+                                className="task-cancel-button"
+                                onClick={() => {
+                                    setTitle("");
+                                    setDescription("");
+                                    setAssignee("");
+                                    setDueDate("");
+                                    setPriority("Medium");
+                                    setStatus("To do");
+                                    setEditingTaskId(null);
+                                    setError("");
+                                }}
+                            >
+                                Cancel
+                            </button>
+                        )}
 
-            <br /><br />
+                    </div>
 
-            {/* My Tasks */}
-            <label>
-                <input
-                    type="checkbox"
-                    checked={myTasks}
-                    onChange={(e) => {
-                        setMyTasks(e.target.checked);
-                        setPage(1);
-                    }}
-                />
-                My Tasks
-            </label>
+                </form>
+            </div>
 
-            <hr />
+            {/* Search and Filters */}
+            <div className="task-filter-card">
 
-            {/* Loading message */}
-            {loading && <p>Loading...</p>}
+                <h2>Find Tasks</h2>
 
+                <div className="task-filter-grid">
+
+                    {/* Search */}
+                    <div className="task-field">
+                        <label>Search Tasks</label>
+                        <input
+                            type="text"
+                            placeholder="Search task..."
+                            value={search}
+                            onChange={(e) => {
+                                setSearch(e.target.value);
+                                setPage(1);
+                            }}
+                        />
+                    </div>
+
+                    {/* Status filter */}
+                    <div className="task-field">
+                        <label>Filter by Status</label>
+                        <select
+                            value={statusFilter}
+                            onChange={(e) => {
+                                setStatusFilter(e.target.value);
+                                setPage(1);
+                            }}
+                        >
+                            <option value="">All Status</option>
+                            <option value="To do">To do</option>
+                            <option value="In progress">In progress</option>
+                            <option value="Done">Done</option>
+                        </select>
+                    </div>
+
+                    {/* Priority filter */}
+                    <div className="task-field">
+                        <label>Filter by Priority</label>
+                        <select
+                            value={priorityFilter}
+                            onChange={(e) => {
+                                setPriorityFilter(e.target.value);
+                                setPage(1);
+                            }}
+                        >
+                            <option value="">All Priority</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+
+                    {/* Member filter */}
+                    <div className="task-field">
+                        <label>Filter by Member</label>
+                        <select
+                            value={assigneeFilter}
+                            onChange={(e) => {
+                                setAssigneeFilter(e.target.value);
+                                setPage(1);
+                            }}
+                        >
+                            <option value="">All Members</option>
+
+                            {uniqueMembers.map((member) => {
+                                const user = member.user;
+                                const userId = user?._id || user;
+
+                                if (!userId) return null;
+
+                                return (
+                                    <option key={userId} value={userId}>
+                                        {user?.name || "Team member"}
+                                    </option>
+                                );
+                            })}
+                        </select>
+                    </div>
+
+                </div>
+
+                {/* My Tasks */}
+                <label className="my-tasks-option">
+                    <input
+                        type="checkbox"
+                        checked={myTasks}
+                        onChange={(e) => {
+                            setMyTasks(e.target.checked);
+                            setPage(1);
+                        }}
+                    />
+                    My Tasks Only
+                </label>
+
+            </div>
+
+            {/* Task list heading */}
+            <div className="task-list-heading">
+                <h2>All Tasks</h2>
+            </div>
+
+            {/* Loading */}
+            {loading && (
+                <p className="task-status-message">Loading tasks...</p>
+            )}
 
             {/* Empty message */}
             {!loading && !error && tasks.length === 0 && (
-                <p>No tasks found</p>
+                <p className="task-status-message">
+                    No tasks found. Create your first task!
+                </p>
             )}
 
-            {/* Display all tasks */}
+            {/* Task cards */}
             {!loading && tasks.map((task) => (
 
-                <div key={task._id}>
+                <div className="task-card" key={task._id}>
 
-                    <hr />
+                    {/* Task heading */}
+                    <div className="task-card-header">
+                        <h3>{task.title}</h3>
 
-                    {/* Task title */}
-                    <h3>{task.title}</h3>
-
-                    {/* Task description */}
-                    <p>{task.description}</p>
-
-                    {/* Assignee */}
-                    <p>
-                        Assignee: {task.assignee?.name || "Nobody"}
-                    </p>
-
-                    {/* Due date */}
-                    <p>
-                        Due Date: {
-                            task.dueDate
-                                ? new Date(task.dueDate).toLocaleDateString()
-                                : "No due date"
-                        }
-                    </p>
-
-                    {/* Priority */}
-                    <p>Priority: {task.priority}</p>
-
-                    {/* Overdue */}
-                    {task.isOverdue && (
-                        <p>OVERDUE!</p>
-                    )}
-
-                    {/* Update status */}
-                    <select
-                        value={task.status}
-                        onChange={(e) => handleStatusChange(
-                            task._id,
-                            e.target.value
+                        {task.isOverdue && (
+                            <span className="overdue-badge">
+                                OVERDUE!
+                            </span>
                         )}
-                    >
-                        <option value="To do">To do</option>
-                        <option value="In progress">In progress</option>
-                        <option value="Done">Done</option>
-                    </select>
+                    </div>
 
-                    <br /><br />
+                    {/* Description */}
+                    <p className="task-description">
+                        {task.description || "No description available"}
+                    </p>
 
-                    {/* Edit button */}
-                    <button onClick={() => handleUpdate(task._id)}>
-                        Edit
-                    </button>
+                    {/* Task details */}
+                    <div className="task-details">
 
-                    {/* Delete button */}
-                    <button onClick={() => handleDelete(task._id)}>
-                        Delete
-                    </button>
+                        <p>
+                            <strong>Assignee:</strong>{" "}
+                            {task.assignee?.name || "Nobody"}
+                        </p>
 
-                    {/* Comments component */}
-<Comments
-    projectId={projectId}
-    taskId={task._id}
-/>
+                        <p>
+                            <strong>Due Date:</strong>{" "}
+                            {task.dueDate
+                                ? new Date(task.dueDate).toLocaleDateString()
+                                : "No due date"}
+                        </p>
+
+                        <p>
+                            <strong>Priority:</strong>{" "}
+                            <span className={`priority-${task.priority?.toLowerCase()}`}>
+                                {task.priority}
+                            </span>
+                        </p>
+
+                    </div>
+
+                    {/* Status update */}
+                    <div className="task-status-control">
+                        <label>Update Status</label>
+
+                        <select
+                            value={task.status}
+                            onChange={(e) =>
+                                handleStatusChange(task._id, e.target.value)
+                            }
+                        >
+                            <option value="To do">To do</option>
+                            <option value="In progress">In progress</option>
+                            <option value="Done">Done</option>
+                        </select>
+                    </div>
+
+                    {/* Edit and Delete */}
+                    <div className="task-card-actions">
+
+                        <button
+                            type="button"
+                            className="task-edit-button"
+                            onClick={() => handleUpdate(task._id)}
+                        >
+                            Edit
+                        </button>
+
+                        <button
+                            type="button"
+                            className="task-delete-button"
+                            onClick={() => handleDelete(task._id)}
+                        >
+                            Delete
+                        </button>
+
+                    </div>
+
+                    {/* Comments */}
+                    <div className="task-comments">
+                        <Comments
+                            projectId={projectId}
+                            taskId={task._id}
+                        />
+                    </div>
 
                 </div>
+
             ))}
 
-            <hr />
+            {/* Pagination */}
+            <div className="task-pagination">
 
-            {/* Previous page */}
-            <button
-                onClick={() => setPage(page - 1)}
-                disabled={page === 1}
-            >
-                Previous
-            </button>
+                <button
+                    onClick={() => setPage(page - 1)}
+                    disabled={page === 1}
+                >
+                    Previous
+                </button>
 
-            {/* Current page */}
-            <span> Page {page} </span>
+                <span>Page {page}</span>
 
-            {/* Next page */}
-            <button
-                onClick={() => setPage(page + 1)}
-                disabled={tasks.length < 10}
-            >
-                Next
-            </button>
+                <button
+                    onClick={() => setPage(page + 1)}
+                    disabled={tasks.length < 10}
+                >
+                    Next
+                </button>
+
+            </div>
 
         </div>
-    );
+
+    </div>
+);
+
 }
 
 // Export Task component

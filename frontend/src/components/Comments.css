@@ -1,0 +1,193 @@
+
+/* Main comments container */
+.comments-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f8fafc;
+    border-radius: 10px;
+}
+
+/* Comments heading */
+.comments-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.comments-header h3 {
+    color: #1e293b;
+    font-size: 18px;
+    margin: 0;
+}
+
+.comments-header span {
+    color: #64748b;
+    font-size: 12px;
+}
+
+/* Comment form */
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+/* Comment textarea */
+.comment-input {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 90px;
+    padding: 12px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-family: inherit;
+
+    resize: vertical;
+    outline: none;
+}
+
+/* Textarea focus */
+.comment-input:focus {
+    border-color: #2563eb;
+}
+
+/* Post button */
+.comment-post-button {
+    align-self: flex-start;
+    padding: 10px 20px;
+
+    background-color: #2563eb;
+    color: white;
+
+    border: none;
+    border-radius: 6px;
+
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Post button hover */
+.comment-post-button:hover {
+    background-color: #1d4ed8;
+}
+
+/* Individual comment card */
+.comment-card {
+    background-color: white;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+/* Author information */
+.comment-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Author avatar */
+.comment-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #dbeafe;
+    color: #2563eb;
+
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Author name and date */
+.comment-author-info h4 {
+    color: #1e293b;
+    font-size: 14px;
+    margin: 0 0 5px;
+}
+
+.comment-author-info small {
+    color: #94a3b8;
+    font-size: 11px;
+}
+
+/* Comment content */
+.comment-text {
+    color: #475569;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 15px 0;
+    overflow-wrap: anywhere;
+}
+
+/* Delete button */
+.comment-delete-button {
+    background-color: #fee2e2;
+    color: #dc2626;
+
+    border: none;
+    border-radius: 5px;
+
+    padding: 7px 14px;
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+/* Delete hover */
+.comment-delete-button:hover {
+    background-color: #fecaca;
+}
+
+/* Success message */
+.comment-success {
+    color: #15803d;
+    background-color: #dcfce7;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+/* Error message */
+.comment-error {
+    color: #dc2626;
+    background-color: #fee2e2;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+/* Loading and empty messages */
+.comment-status {
+    text-align: center;
+    color: #64748b;
+    font-size: 13px;
+    padding: 15px;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+
+    .comments-container {
+        padding: 12px;
+    }
+
+    .comment-card {
+        padding: 12px;
+    }
+
+    .comment-post-button {
+        width: 100%;
+    }
+
+}

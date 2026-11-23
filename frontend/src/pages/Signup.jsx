@@ -8,6 +8,8 @@ import { registerUser } from "../api/authApi";
 // Import navigation function
 import { useNavigate } from "react-router-dom";
 
+import './Signup.css';
+
 // Create Signup component
 function Signup() {
 
@@ -54,55 +56,95 @@ navigate("/login");
     };
 
     // Display the signup page
-    return (
-        <div>
+    
+return (
+    // Main background container
+    <div className="signup-container">
 
-            {/* Display signup heading */}
-            <h1>Create Account</h1>
+        {/* Signup card */}
+        <div className="signup-card">
 
-            {/* Create signup form */}
+            {/* Signup heading */}
+            <h1 className="signup-title">
+                Create Account
+            </h1>
+
+            {/* Subtitle */}
+            <p className="signup-subtitle">
+                Join our Team Task Manager
+            </p>
+
+            {/* Signup form */}
             <form onSubmit={handleSignup}>
 
-                {/* Name input field */}
-                <input
-                    type="text"
-                    placeholder="Enter Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                />
+                {/* Name field */}
+                <div className="signup-form-group">
 
-                <br /><br />
+                    <label htmlFor="name">Full Name</label>
 
-                {/* Email input field */}
-                <input
-                    type="email"
-                    placeholder="Enter Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
+                    <input
+                        id="name"
+                        type="text"
+                        placeholder="Enter Name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                    />
 
-                <br /><br />
+                </div>
 
-                {/* Password input field */}
-                <input
-                    type="password"
-                    placeholder="Enter Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    minLength={8}
-                />
+                {/* Email field */}
+                <div className="signup-form-group">
 
-                <br /><br />
+                    <label htmlFor="email">Email Address</label>
+
+                    <input
+                        id="email"
+                        type="email"
+                        placeholder="Enter Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+
+                </div>
+
+                {/* Password field */}
+                <div className="signup-form-group">
+
+                    <label htmlFor="password">Password</label>
+
+                    <input
+                        id="password"
+                        type="password"
+                        placeholder="Enter Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        minLength={8}
+                    />
+
+                    <small className="password-hint">
+                        Password must be at least 8 characters
+                    </small>
+
+                </div>
 
                 {/* Signup button */}
-                <button type="submit">Sign Up</button>
+                <button
+                    type="submit"
+                    className="signup-button"
+                >
+                    Create Account
+                </button>
 
             </form>
+
         </div>
-    );
+
+    </div>
+);
+
 }
 
 // Export Signup component

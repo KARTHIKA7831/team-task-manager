@@ -1,0 +1,106 @@
+/* Full page background */
+.login-container {
+    min-height: 100vh;
+    background-color: #f1f5f9;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Login card */
+.login-card {
+    width: 350px;
+    background-color: white;
+
+    padding: 35px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Login heading */
+.login-title {
+    text-align: center;
+    color: #1e293b;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+/* Subtitle */
+.login-subtitle {
+    text-align: center;
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+/* Form group */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+/* Input label */
+.form-group label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #334155;
+}
+
+/* Input fields */
+.form-group input {
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+}
+
+/* When user clicks input */
+.form-group input:focus {
+    border-color: #2563eb;
+}
+
+/* Login button */
+.login-button {
+    width: 100%;
+    padding: 12px;
+
+    background-color: #2563eb;
+    color: white;
+
+    border: none;
+    border-radius: 6px;
+
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Mouse hover effect */
+.login-button:hover {
+    background-color: #1d4ed8;
+}
+
+/* Make login card responsive */
+.login-card {
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+/* Make input fields fit inside card */
+.form-group input {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* Mobile screen adjustment */
+@media (max-width: 480px) {
+    .login-card {
+        width: 90%;
+        padding: 25px;
+    }
+}

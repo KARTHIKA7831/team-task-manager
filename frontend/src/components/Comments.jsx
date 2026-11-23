@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 // Import comment API
 import commentApi from "../api/commentApi";
 
+import './Comments.css';
+
 // Create Comments component
 function Comments({ projectId, taskId }) {
 
@@ -143,71 +145,90 @@ const handleDeleteComment = (commentId) => {
         });
 };
 
-   return (
-    <div>
+   
+return (
+    <div className="comments-container">
 
         {/* Comments heading */}
-        <h3>Comments</h3>
+        <div className="comments-header">
+            <h3>Comments</h3>
+            <span>{comments.length} Comments</span>
+        </div>
 
-        {/* Display success message */}
-{successMessage && <p>{successMessage}</p>}
+        {/* Success message */}
+        {successMessage && (
+            <p className="comment-success">{successMessage}</p>
+        )}
 
-{/* Add comment form */}
-<form onSubmit={handleAddComment}>
+        {/* Add comment form */}
+        <form onSubmit={handleAddComment} className="comment-form">
 
-    {/* Comment input */}
-    <textarea
-        placeholder="Write a comment..."
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-    />
+            <textarea
+                className="comment-input"
+                placeholder="Write a comment..."
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+            />
 
-    <br /><br />
+            <button type="submit" className="comment-post-button">
+                Post Comment
+            </button>
 
-    {/* Post comment button */}
-    <button type="submit">
-        Post Comment
-    </button>
-
-</form>
+        </form>
 
         {/* Loading message */}
-        {loading && <p>Loading comments...</p>}
+        {loading && (
+            <p className="comment-status">Loading comments...</p>
+        )}
 
         {/* Error message */}
-        {error && <p>{error}</p>}
+        {error && (
+            <p className="comment-error">{error}</p>
+        )}
 
         {/* Empty message */}
         {!loading && !error && comments.length === 0 && (
-            <p>No comments yet</p>
+            <p className="comment-status">
+                No comments yet. Be the first to comment!
+            </p>
         )}
 
         {/* Display all comments */}
         {!loading && comments.map((comment) => (
 
-            <div key={comment._id}>
+            <div className="comment-card" key={comment._id}>
 
-                {/* Author name */}
-                <h4>{comment.author?.name || "Unknown User"}</h4>
+                {/* Comment author */}
+                <div className="comment-author">
+
+                    <div className="comment-avatar">
+                        {comment.author?.name?.charAt(0).toUpperCase() || "U"}
+                    </div>
+
+                    <div className="comment-author-info">
+                        <h4>{comment.author?.name || "Unknown User"}</h4>
+
+                        <small>
+                            {new Date(comment.createdAt).toLocaleString()}
+                        </small>
+                    </div>
+
+                </div>
 
                 {/* Comment text */}
-                <p>{comment.text}</p>
-
-                {/* Comment date */}
-                <small>
-                    {new Date(comment.createdAt).toLocaleString()}
-                </small>
+                <p className="comment-text">{comment.text}</p>
 
                 {/* Delete button */}
-{String(comment.author?._id) === String(currentUserId) && (
+                {String(comment.author?._id) === String(currentUserId) && (
 
-    <button onClick={() => handleDeleteComment(comment._id)}>
-        Delete
-    </button>
+                    <button
+                        className="comment-delete-button"
+                        onClick={() => handleDeleteComment(comment._id)}
+                    >
+                        Delete
+                    </button>
 
-)}
-
-                <hr />
+                )}
 
             </div>
 
@@ -215,6 +236,7 @@ const handleDeleteComment = (commentId) => {
 
     </div>
 );
+
 }
 
 // Export Comments component

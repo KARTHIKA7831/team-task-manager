@@ -1,16 +1,27 @@
+import './Navbar.css';
+
 // Create Navbar component
 function Navbar() {
 
     // Display Navbar
-    return (
+    
+return (
+    <div className="navbar-container">
 
-        <nav>
+        {/* Application logo and name */}
+        <div className="navbar-brand">
 
-            {/* Display application name at the top */}
+            <div className="navbar-logo">
+                📋
+            </div>
+
             <h2>Team Task Manager</h2>
 
-        </nav>
-    );
+        </div>
+
+    </div>
+);
+
 }
 
 // Export Navbar component

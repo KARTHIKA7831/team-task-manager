@@ -1,0 +1,230 @@
+
+/* Full dashboard page */
+.dashboard-container {
+    min-height: 100vh;
+    background-color: #f1f5f9;
+    padding: 30px;
+}
+
+/* Dashboard heading */
+.dashboard-header {
+    max-width: 1100px;
+    margin: 0 auto 30px;
+}
+
+/* Small heading */
+.dashboard-label {
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Main title */
+.dashboard-header h1 {
+    color: #1e293b;
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+/* Subtitle */
+.dashboard-subtitle {
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* Dashboard cards container */
+.dashboard-cards {
+    max-width: 1100px;
+    margin: 0 auto 30px;
+
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
+
+/* Individual dashboard card */
+.dashboard-card {
+    background-color: white;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+
+    border-left: 4px solid #2563eb;
+}
+
+/* Card icon */
+.dashboard-card-icon {
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+/* Card heading */
+.dashboard-card h3 {
+    color: #64748b;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+/* Card number */
+.dashboard-card h2 {
+    color: #1e293b;
+    font-size: 32px;
+    margin: 0 0 10px;
+}
+
+/* Card description */
+.dashboard-card p {
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+/* Different card colors */
+.todo-card {
+    border-left-color: #3b82f6;
+}
+
+.progress-card {
+    border-left-color: #f59e0b;
+}
+
+.done-card {
+    border-left-color: #16a34a;
+}
+
+.overdue-card {
+    border-left-color: #dc2626;
+}
+
+/* Member section */
+.member-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* Member section heading */
+.member-section-header h2 {
+    color: #1e293b;
+    font-size: 21px;
+}
+
+.member-section-header p {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* Member list */
+.member-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Individual member card */
+.member-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 16px;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+/* Member information */
+.member-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Member avatar */
+.member-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #dbeafe;
+    color: #2563eb;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Member name */
+.member-info h3 {
+    color: #1e293b;
+    font-size: 15px;
+    margin: 0 0 5px;
+}
+
+/* Member role */
+.member-info p {
+    color: #64748b;
+    font-size: 13px;
+    margin: 0;
+}
+
+/* Open task count */
+.member-task-count {
+    text-align: center;
+}
+
+.member-task-count span {
+    color: #64748b;
+    font-size: 12px;
+}
+
+.member-task-count h2 {
+    color: #2563eb;
+    font-size: 22px;
+    margin: 5px 0 0;
+}
+
+/* Tablet responsive */
+@media (max-width: 768px) {
+
+    .dashboard-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+
+    .dashboard-container {
+        padding: 15px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 25px;
+    }
+
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .dashboard-card {
+        padding: 18px;
+    }
+
+    .member-section {
+        padding: 17px;
+    }
+
+    .member-card {
+        gap: 10px;
+    }
+
+}
