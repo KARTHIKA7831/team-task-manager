@@ -70,9 +70,9 @@ function App() {
 
                  {/* Redirect the home page to Login */}
                 <Route
-                    path="/"
-                    element={<Navigate to="/login" replace />}
-                />
+    path="/"
+    element={<Navigate to="/signup" replace />}
+/>
 
             </Routes>
 

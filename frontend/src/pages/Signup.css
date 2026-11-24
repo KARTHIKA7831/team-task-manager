@@ -112,3 +112,20 @@
         padding: 25px;
     }
 }
+
+.signup-login-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+.signup-login-link span {
+    color: #2563eb;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.signup-login-link span:hover {
+    text-decoration: underline;
+}

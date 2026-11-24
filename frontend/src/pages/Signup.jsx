@@ -140,6 +140,13 @@ return (
 
             </form>
 
+            <p className="signup-login-link">
+    Already have an account?{" "}
+    <span onClick={() => navigate("/login")}>
+        Sign In
+    </span>
+</p>
+
         </div>
 
     </div>
