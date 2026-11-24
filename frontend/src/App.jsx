@@ -68,12 +68,7 @@ function App() {
 />
 </Route>
 
-                
-
-                
-
-
-                {/* Redirect the home page to Login */}
+                 {/* Redirect the home page to Login */}
                 <Route
                     path="/"
                     element={<Navigate to="/login" replace />}
